@@ -1,20 +1,78 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- <input [formControl]='name' class="form-control mb-4 mt-4 w-100" type="text" name="name" id="name">
+<input [formControl]='date' [value]='date.value | date:"fullDate"' class="form-control mb-4 mt-4 w-100" type="text" name="date" id="date">
 
+<input [inputDirective]='inputValue' (change)='inputChange($event.target.value)' class="form-control" type="text" name="simulation" id="simulation"> -->
+
+
+<form [formGroup]='personalDetailsForm' (ngSubmit)='onSubmit()' class="container mt-4">
+  <h1 class="mb-4">Personal Details</h1>
+  <div class="form-row mb-4">
+    <div class="col-md-6 form-group">
+      <label for="name">Name</label>
+      <input formControlName="name" required class="form-control" type="text" name="name" id="name">
+      <small class="feedback"></small>
+    </div>
+    <div class="col-md-6 form-group">
+      <label for="nationality">Nationality</label>
+      <select formControlName="nationality" class="form-control" name="nationality" id="nationality">
+        <option value="uzbek">Uzbek</option>
+        <option value="kyrgiz">Kyrgiz</option>
+        <option value="russian">Russian</option>
+        <option value="american">American</option>
+      </select>
+      <small class="feedback"></small>
+    </div>
+    <div class="col-md-6 form-group">
+      <label for="gender">Gender</label>
+      <select formControlName="gender" class="form-control" name="gender" id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <small class="feedback"></small>
+    </div>
+    <div class="col-md-6 form-group">
+      <label for="date-of-birth">Date of birth</label>
+      <input formControlName="dateOfBirth" class="form-control" type="date" name="date-of-birth" id="date-of-birth">
+    </div>
+    <small class="feedback"></small>
+  </div>
+  <div class="form-row mb-4">
+    <div class="form-group col-md-6">
+      <label for="mobile-number">Mobile number</label>
+      <input formControlName="mobileNumber" class="form-control" type="mobile-number" name="mobile-number" id="mobile-number">
+      <div class="feedback"></div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input formControlName="email" class="form-control" type="email" name="email" id="email">
+      <div class="feedback"></div>
+    </div>
+  </div>
+  <div formArrayName="child" class="form-row mb-4">
+    <h4 class="col-md-12 mb-4">About you child</h4>
+    <div class="form-group col-md-4">
+      <label for="child-name">Child name</label>
+      <input formControlName="name" class="form-control" type="text" name="child-name" id="child-name">
+      <div class="feedback"></div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="child-age">Child age</label>
+      <input formControlName="age" class="form-control" type="number" name="child-age" id="child-age">
+      <div class="feedback"></div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="child-gender">Child gender</label>
+      <select formControlName="gender" class='form-control' name="child-gender" id="child-gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <div class="feedback"></div>
+    </div>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-light ml-auto" (click)='addChildForm()'>I have another child</button>
+  </div>
+  <div class="row mt-4">
+    <button [disabled]='!personalDetailsForm.valid' class="btn btn-primary ml-auto" type="submit">Submit my data</button>  
+  </div>
+</form>
